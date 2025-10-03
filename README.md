@@ -25,9 +25,3 @@
 
 
 Thinking Machines Blog: https://thinkingmachines.ai/blog/
-
-3. 模型的“内部状态”与“元认知” (The Model's "Internal State" and "Metacognition")
-我们关注模型的输出，但很少关注模型在做决策时的“内心活动”。
-不确定性与置信度校准失败 (Failure in Uncertainty and Confidence Calibration)：
-是什么：模型在生成内容时，内部会有一个置信度分数。
-被忽略的风险：一个不安全的模型可能对自己生成的有害内容**“过度自信”。安全对齐不仅要让模型“不”生成有害内容，还要让它在面对模糊、有风险的输入时，能准确地识别出自己的不确定性**，并选择拒绝回答或寻求澄清，而不是自信地“踩坑”。研究如何让模型在安全相关问题上“知之为知之，不知为不知”是一个被严重低估的方向。
