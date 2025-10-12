@@ -5,15 +5,18 @@
 
 我的座右铭: 痛苦是一种对灵魂的清洗.
 
-我的驱动力: 好奇心, 理解宇宙, 做一个什么都知道的人.
+我的驱动力: 宇宙模式, 人脑意识.
+
+![alt text](image.png)
 
 ## 现实警钟
-你觉得身边的世界'水', 你觉得身边的世界'俗', 你看不起考公的, 看不起没价值的, 那么你有多么'脱俗'? 请用行动证明你自己:
+你觉得公务员'水', 你觉得普通博士'垃圾', 你看不起没有真正价值的, 那么你有多么'脱俗'? 请用行动证明你自己:
 
 20250922 -- 20250930, 
 
 ## 我的准则
 做真正有价值的事情, 切勿自欺欺人.
+
 
 ## 我的最大弱势
 过度计划 -- 从本科科研一事无成, 到研究生科研后半段一事无成, 再到高中毕业7年未打造出核心竞争力, 都是过度计划导致的.
@@ -32,4 +35,4 @@
 
 [Perplexity 创始人采访: 可以展示一下你们产品的 killer feature 吗? 你不需要为整个市场下赌注, 你只需要 do what you truly are obsessed about (33:27)](https://www.bilibili.com/video/BV19pnnzSEj8/?share_source=copy_web&vd_source=fa770b2848370154ff797b0ece7eae1b)
 
-![alt text](image.png)
+Shunyu Yao: https://alfredyao.github.io/index.html
