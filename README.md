@@ -1,7 +1,7 @@
 # The-Cecilia
 
 ## 我的信条
-乐观, 谦逊, 执行.
+乐观, 谦逊, 深度专注.
 
 我的座右铭: 痛苦是一种对灵魂的清洗.
 
@@ -35,7 +35,10 @@
 3. https://thinkingmachines.ai/blog/ + CS336, 一定要把简历提到过的知识变成博客;
 4. 阅读, 写文字, 学习毛泽东.
 
+对我最重要的视频: https://www.bilibili.com/video/BV1mzHLztEnp/?share_source=copy_web&vd_source=fa770b2848370154ff797b0ece7eae1b
 
-[Perplexity 创始人采访: 可以展示一下你们产品的 killer feature 吗? 你不需要为整个市场下赌注, 你只需要 do what you truly are obsessed about (33:27)](https://www.bilibili.com/video/BV19pnnzSEj8/?share_source=copy_web&vd_source=fa770b2848370154ff797b0ece7eae1b)
+Perplexity 创始人采访: [可以展示一下你们产品的 killer feature 吗? 你不需要为整个市场下赌注, 你只需要 do what you truly are obsessed about (33:27)](https://www.bilibili.com/video/BV19pnnzSEj8/?share_source=copy_web&vd_source=fa770b2848370154ff797b0ece7eae1b)
 
 Shunyu Yao: https://alfredyao.github.io/index.html
+
+杨振宁的演讲: https://www.bilibili.com/video/BV196WszvEVu/?spm_id_from=333.1007.tianma.1-1-1.click&vd_source=d925ec444f980704d6cc1c68facf3aad
