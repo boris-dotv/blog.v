@@ -42,17 +42,17 @@
 
 ## 眼前重要的事
 1. 通读 50 篇 Deep Research 的论文, 在百度留下来;
-2. 刷 150 道 Leetcode, 更新 Leetcode 的文档;
+2. 更新 Leetcode 博客, nanochat 博客.
 
 ## 我想研读
 1. https://core.telegram.org/mtproto
 2. https://thinkingmachines.ai/blog/
 3. https://github.com/karpathy/nanochat
 
-对我最重要的视频: https://www.bilibili.com/video/BV1mzHLztEnp/?share_source=copy_web&vd_source=fa770b2848370154ff797b0ece7eae1b
 
-Perplexity 创始人采访: [可以展示一下你们产品的 killer feature 吗? 你不需要为整个市场下赌注, 你只需要 do what you truly are obsessed about (33:27)](https://www.bilibili.com/video/BV19pnnzSEj8/?share_source=copy_web&vd_source=fa770b2848370154ff797b0ece7eae1b)
+## 前车之鉴
+1. [Durov 博客](https://www.bilibili.com/video/BV1mzHLztEnp/?share_source=copy_web&vd_source=fa770b2848370154ff797b0ece7eae1b)
+2. [Perplexity 创始人采访: 你不需要为整个市场下赌注, 你只需要 do what you truly are obsessed about (33:27)](https://www.bilibili.com/video/BV19pnnzSEj8/?share_source=copy_web&vd_source=fa770b2848370154ff797b0ece7eae1b)
+3. [Shunyu Yao 离开物理, 加入 AI](https://alfredyao.github.io/posts/2025-10-06.html)
+4. [杨振宁分享自己的故事](https://www.bilibili.com/video/BV196WszvEVu/?spm_id_from=333.1007.tianma.1-1-1.click&vd_source=d925ec444f980704d6cc1c68facf3aad)
 
-Shunyu Yao: https://alfredyao.github.io/index.html
-
-杨振宁的演讲: https://www.bilibili.com/video/BV196WszvEVu/?spm_id_from=333.1007.tianma.1-1-1.click&vd_source=d925ec444f980704d6cc1c68facf3aad
