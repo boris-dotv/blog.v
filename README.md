@@ -49,6 +49,7 @@
 2. https://thinkingmachines.ai/blog/
 3. https://github.com/karpathy/nanochat
 4. https://tongyi-agent.github.io/publication/
+5. https://ethereum.org/zh/developers/docs/
 
 
 ## 前车之鉴
