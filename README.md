@@ -48,6 +48,7 @@
 1. https://core.telegram.org/mtproto
 2. https://thinkingmachines.ai/blog/
 3. https://github.com/karpathy/nanochat
+4. https://tongyi-agent.github.io/publication/
 
 
 ## 前车之鉴
