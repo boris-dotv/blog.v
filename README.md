@@ -23,9 +23,10 @@
 * 攒 200,000 人民币;
 * 拥有 20 篇有价值的博客 (leetcode, Deep Research -- 百度, 大模型 -- nanochat, Telegram -- 构建我自己的 Telegram, ETH), 看 20 本书 (毛泽东选集必看).
 
-### 今日事
-写完 DR4LTG 的详细运行流程, 提出标题优化方案, 写出落地需要的前置准备细节.
-打卡 Python 版本的 leetcode.
+### 目标拆分
+* Leetcode 博客打算怎么写? 每天在自己电脑本地更新3个题目的完整解法, 提交到 blog.v 仓库的 LEETCODE.ipynb 里, 标题加粗同时附上链接, 写明方法, 时间复杂度, 空间复杂度三项, 并将运行结果打印出来.
+* Deep Research 博客怎么写? 解读 node-DeepResearch, 自己的 DR4LTG (此项不开源), Anthropic Deep Research, OpenAI Deep Research, Tongyi Deep Research, ASearcher 等项目的博客或论文, 并把解读和链接一节一节地更新到 DeepResearch.md 中.
+* Telegram 博客怎么写? 记录 how to build my own telegram by TDLib from scratch, 重点记录实现方式和代码架构, 同时可以记录一些 MTProto 相关的加密理论, 同时记录自己对于 Bot 的探索, 最终目标是做出我自己的 Bot, 超级账号, Telev (我自己的 Telegram).
 
 
 ## 愤世嫉俗
