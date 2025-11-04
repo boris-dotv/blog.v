@@ -1,0 +1,10 @@
+^D:\.V.LAB\BLOG.V\CPP\BUILD\CMAKEFILES\ABCD981CC2F373F7B2D4E0799F9CD019\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/.v.lab/blog.v/cpp -BD:/.v.lab/blog.v/cpp/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file D:/.v.lab/blog.v/cpp/build/MaxPathSumProject.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"D:/.v.lab/blog.v/cpp/build/cmake_install.cmake"
+	],
+	"Parallel" : false
+}
