@@ -22,13 +22,16 @@
 ### 20251015 - 20261015 目标
 * 全年好好睡觉, 13:10 午休 & 23:45 睡觉 (睡觉不是最重要的, 最重要的是隔绝快餐信息);
 * 攒 200,000 人民币;
-* 拥有 20 篇有价值的博客 (1. leetcode, 2. Deep Research -- 百度, 3. 大模型 -- nanochat, 4. Telegram -- 构建我自己的 Telegram, 5. ETH), 看 20 本书 (毛泽东选集必看).
+* 拥有 20 篇有价值的博客, 看 20 本书 (毛泽东选集必看).
 
 
 ### 目标拆分 (持续更新)
 * Leetcode 博客打算怎么写? 每天在自己电脑本地更新3个题目的完整解法, 提交到 blog.v 仓库的 LEETCODE.ipynb 里, 标题加粗同时附上链接, 写明方法, 时间复杂度, 空间复杂度三项, 并将运行结果打印出来.
 * Deep Research 博客怎么写? 解读 node-DeepResearch, 自己的 DR4LTG (此项不开源), Anthropic Deep Research, OpenAI Deep Research, Tongyi Deep Research, ASearcher 等项目的博客或论文, 并把解读和链接一节一节地更新到 DeepResearch.md 中.
 * Telegram 博客怎么写? 记录 how to build my own telegram by TDLib from scratch, 重点记录实现方式和代码架构, 同时可以记录一些 MTProto 相关的加密理论, 同时记录自己对于 Bot 的探索, 最终目标是做出我自己的 Bot, 超级账号, Telev (我自己的 Telegram).
+
+* nanochat 博客怎么写? 计划固定一些参数, 来写一个完全可复现项目的博客.
+* ETH 回头再说.
 
 
 
