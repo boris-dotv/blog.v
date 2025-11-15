@@ -9,10 +9,20 @@
 
 **心之所向**: [**一个人的气质, 是靠自己硬生生闯出来的, 一个饱经风霜, 经历过暴风雨洗礼的人, 才能压得住场子, 遇到问题才会极其淡定, 才能有一种独特的韵味和魅力, 这些都不是学来的, 而是在大风大浪中磨练出来的, 只有经历困难, 才能历练一个人的淡定和从容, 当你内心强大了, 自然就会显得有气质.**](https://www.bilibili.com/video/BV1hPhSzQEMy/?share_source=copy_web&vd_source=fa770b2848370154ff797b0ece7eae1b)
 
-Gemini 启示:
-1. 对 Durov 禁欲观点的提炼 -- 简单的快乐 (Easy Pleasure) 会削弱你追求困难事物的意志力.
+
+
+
+
+
+
 
 ## 2. 核心竞争力
+
+(1) 极其扎实的大语言模型基础知识能力.
+(2) 对 Deep Research 多智能体系统的搭建有深刻认识.
+(3) 对 Telegram 生态有深刻认识.
+
+
 
 
 ## 3. 核心弱势
@@ -30,7 +40,7 @@ Gemini 启示:
 * (2) 钱 -- 攒 200,000 人民币: 0
 
 
-* (3) 博客 -- 
+* (3) 博客 (核心是记录我的创造过程, 归纳只是顺手的.) -- 
     - Leetcode 博客:
     - nanochat 博客:
     - Deep Research 博客: 
@@ -45,7 +55,7 @@ Gemini 启示:
 
 
 * (5) 音乐 -- 
-    - 吉他: 
+    - 吉他 (Ins 频道): 
 
 
 
@@ -93,3 +103,7 @@ Gemini 启示:
 3. [Shunyu Yao 离开物理, 加入 AI](https://alfredyao.github.io/posts/2025-10-06.html)
 4. [杨振宁分享自己的故事](https://www.bilibili.com/video/BV196WszvEVu/?spm_id_from=333.1007.tianma.1-1-1.click&vd_source=d925ec444f980704d6cc1c68facf3aad)
 
+
+
+## Gemini 启示
+1. 对 Durov 禁欲观点的提炼 -- 简单的快乐 (Easy Pleasure) 会削弱你追求困难事物的意志力.
