@@ -1,0 +1,7 @@
+code/build/**/*.png
+code/build/docx/
+code/build/epub/
+code/build/pdf/
+code/build/html/
+code/build/latex/
+code/build/arxiv.zip
