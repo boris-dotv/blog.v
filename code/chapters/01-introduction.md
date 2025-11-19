@@ -1,13 +1,93 @@
 ---
 prev-chapter: "Home"
 prev-url: "https://rlhfbook.com/"
-page-title: Introduction
-next-chapter: "Key Related Works"
+page-title: Leetcode (Hot 100)
+next-chapter: "nanochat"
 next-url: "02-related-works"
 ---
 
-# Introduction
-你好, 欢迎来到我的博客.
+# Leetcode (Hot 100)
+
+* **题目来源**: [LeetCode 热题 100](https://leetcode.cn/studyplan/top-100-liked/)
+* **题解可视化**: 本文所有代码均可直接复制到: [Python Tutor](https://pythontutor.com/render.html#mode=edit) 进行可视化运行.
+
+
+
+
+## 二叉树
+
+
+### [236. 二叉树的最近公共祖先](https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-tree)
+* 方法: 递归 + 后序遍历 -- 该方法, 即 lowestCommonAncestor 的准确定义是, 在 root 为根的子树中对 p 和 q 进行查找, 并返回该子树中, 能覆盖住 p 或 q（或两者）的那个最高位置的节点.
+* 时间复杂度: O(n) -- 最坏情况下, 如 p 和 q 都在最底部或树退化为列表, 那么需要遍历树的每一个节点.
+* 空间复杂度: O(log n) -- 这题是普通二叉树, 需要后序遍历汇总信息, 此时存在隐形的系统栈空间, 由栈深度决定空间复杂度, 平均为 O(log n).
+
+
+
+
+```python
+from typing import List
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+def create_tree_from_list(values: List[int]):
+    from collections import deque
+    root = TreeNode(values[0])
+    q = deque([root])
+    i = 1
+    while q and i < len(values):
+        current_node = q.popleft()
+        if values[i]:
+            current_node.left = TreeNode(values[i])
+            q.append(current_node.left)
+        i += 1
+        if i >= len(values):
+            break
+        if values[i]:
+            current_node.right = TreeNode(values[i])
+            q.append(current_node.right)
+        i += 1
+    return root
+
+nodes_map = {}
+
+def build_map(node: TreeNode):
+    if not node:
+        return
+    nodes_map[node.val] = node
+    build_map(node.left)
+    build_map(node.right)
+
+class Solution236:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        if not root or root == p or root == q:
+            return root
+        left = self.lowestCommonAncestor(root.left, p, q)
+        right = self.lowestCommonAncestor(root.right, p, q)
+        if left and right:
+            return root
+        if left and not right:
+            return left
+        return right
+    
+sol = Solution236()
+test_cases = [
+    ([3, 5, 1, 6, 2, 0, 8, None, None, 7, 4], 5, 1, 3),
+    ([3, 5, 1, 6, 2, 0, 8, None, None, 7, 4], 5, 4, 5),
+    ([1, 2], 1, 2, 1)
+]
+for i, (tree, p, q, res) in enumerate(test_cases):
+    root = create_tree_from_list(tree)
+    build_map(root)
+    assert sol.lowestCommonAncestor(root, nodes_map.get(p), nodes_map.get(q)) == nodes_map.get(res), f"test cases {i + 1} failed."
+print("\n All test cases passed successfully!")
+```
+
+
 ```python
 from typing import List
 class Solution209:
@@ -236,44 +316,3 @@ Newer RLHF techniques and discussions that are not clearly established, but are 
 15. Tool Use and Function Calling: The basics of training models to call functions or tools in their outputs.
 16. Synthetic Data: The shift away from human to synthetic data and how distilling from other models is used.
 17. Evaluation: The ever evolving role of evaluation (and prompting) in language models.
-
-#### Open Questions 
-
-Fundamental problems and discussions for the long-term evolution of how RLHF is used.
-
-18. Over-optimization: Qualitative observations of why RLHF goes wrong and why over-optimization is inevitable with a soft optimization target in reward models.
-19. Style and Information: How RLHF is often underestimated in its role in improving the user experience of models due to the crucial role that style plays in information sharing.
-20. Product, UX, Character: How RLHF is shifting in its applicability as major AI laboratories use it to subtly match their models to their products.
-
-
-### Target Audience
-
-This book is intended for audiences with entry level experience with language modeling, reinforcement learning, and general machine learning. 
-It will not have exhaustive documentation for all the techniques, but just those crucial to understanding RLHF.
-
-### How to Use This Book
-
-This book was largely created because there were no canonical references for important topics in the RLHF workflow.
-The contributions of this book are supposed to give you the minimum knowledge needed to try a toy implementation or dive into the literature. 
-This is *not* a comprehensive textbook, but rather a quick book for reminders and getting started.
-Additionally, given the web-first nature of this book, it is expected that there are minor typos and somewhat random progressions -- please contribute by fixing bugs or suggesting important content on [GitHub](https://github.com/natolambert/rlhf-book).
-
-### About the Author
-
-Dr. Nathan Lambert is a RLHF researcher contributing to the open science of language model fine-tuning.
-He has released many models trained with RLHF, their subsequent datasets, and training codebases in his time at the Allen Institute for AI (Ai2) and HuggingFace.
-Examples include [Zephyr-Beta](https://huggingface.co/HuggingFaceH4/zephyr-7b-beta), [Tulu 2](https://huggingface.co/allenai/tulu-2-dpo-70b), [OLMo](https://huggingface.co/allenai/OLMo-7B-Instruct), [TRL](https://github.com/huggingface/trl), [Open Instruct](https://github.com/allenai/open-instruct), and many more. 
-He has written extensively on RLHF, including [many blog posts](https://www.interconnects.ai/t/rlhf) and [academic papers](https://scholar.google.com/citations?hl=en&user=O4jW7BsAAAAJ&view_op=list_works&sortby=pubdate).
-
-## Future of RLHF
-
-With the investment in language modeling, many variations on the traditional RLHF methods emerged.
-RLHF colloquially has become synonymous with multiple overlapping approaches. 
-RLHF is a subset of preference fine-tuning (PreFT) techniques, including Direct Alignment Algorithms (See Chapter 12).
-RLHF is the tool most associated with rapid progress in "post-training" of language models, which encompasses all training after the large-scale autoregressive training on primarily web data. 
-This textbook is a broad overview of RLHF and its directly neighboring methods, such as instruction tuning and other implementation details needed to set up a model for RLHF training.
-
-As more successes of fine-tuning language models with RL emerge, such as OpenAI's o1 reasoning models, RLHF will be seen as the bridge that enabled further investment of RL methods for fine-tuning large base models.
-At the same time, while the spotlight of focus may be more intense on the RL portion of RLHF in the near future -- as a way to maximize performance on valuable tasks -- the core of RLHF is that it is a lens for studying the grand problems facing modern forms of AI.
-How do we map the complexities of human values and objectives into systems we use on a regular basis?
-This book hopes to be the foundation of decades of research and lessons on these problems.

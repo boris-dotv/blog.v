@@ -30,52 +30,20 @@ class NavigationDropdown extends HTMLElement {
     <div class="section">
       <h3>Introductions</h3>
       <ol start="1">
-        <li><a href="/c/01-introduction.html">Introduction</a></li>
-        <li><a href="/c/02-related-works.html">Seminal (Recent) Works</a></li>
-        <li><a href="/c/03-setup.html">Definitions</a></li>
+        <li><a href="/c/01-introduction.html">Leetcode (hot 100)</a></li>
+        <li><a href="/c/02-related-works.html">nanochat</a></li>
+        
       </ol>
     </div>
 
     <div class="section">
       <h3>Problem Setup & Context</h3>
       <ol start="4">
-        <li><a href="/c/04-optimization.html">Training Overview</a></li>
-        <li><a href="/c/05-preferences.html">What are preferences?</a></li>
-        <li><a href="/c/06-preference-data.html">Preference Data</a></li>
+        <li><a href="/c/03-setup.html">Deep Research</a></li>
+        <li><a href="/c/04-optimization.html">MTProto</a></li>
       </ol>
     </div>
 
-    <div class="section">
-      <h3>Optimization Tools</h3>
-      <ol start="7">
-        <li><a href="/c/07-reward-models.html">Reward Modeling</a></li>
-        <li><a href="/c/08-regularization.html">Regularization</a></li>
-        <li><a href="/c/09-instruction-tuning.html">Instruction Tuning (i.e. Supervised Finetuning)</a></li>
-        <li><a href="/c/10-rejection-sampling.html">Rejection Sampling</a></li>
-        <li><a href="/c/11-policy-gradients.html">Reinforcement Learning (i.e. Policy Gradients)</a></li>
-        <li><a href="/c/12-direct-alignment.html">Direct Alignment Algorithms</a></li>
-      </ol>
-    </div>
-
-    <div class="section">
-      <h3>Advanced</h3>
-      <ol start="13">
-        <li><a href="/c/13-cai.html">Constitutional AI and AI Feedback</a></li>
-        <li><a href="/c/14-reasoning.html">Reasoning and Inference-time Scaling</a></li>
-        <li><a href="/c/14.5-tools.html">Tool Use and Function Calling</a></li>
-        <li><a href="/c/15-synthetic.html">Synthetic Data & Distillation</a></li>
-        <li><a href="/c/16-evaluation.html">Evaluation</a></li>
-      </ol>
-    </div>
-
-    <div class="section">
-      <h3>Open Questions</h3>
-      <ol start="18">
-        <li><a href="/c/17-over-optimization.html">Over-optimization</a></li>
-        <li><a href="/c/18-style.html">Style & Information</a></li>
-        <li><a href="/c/19-character.html">Product, UX, Character, and Post-Training</a></li>
-      </ol>
-    </div>
   </nav>
 </div>
 </div>
