@@ -12,8 +12,8 @@
   <meta property="og:image:height" content="1080" />
   
   <!-- <meta property="og:title" content="$if(title-prefix)$$title-prefix$ – $endif$$pagetitle$" /> -->
-  <meta property="og:title" content="$if(page-title)$$page-title$$else$$title$$endif$ | RLHF Book by Nathan Lambert" />
-  <meta property="og:description" content="The Reinforcement Learning from Human Feedback Book" />
+  <meta property="og:title" content="$if(page-title)$$page-title$$else$$title$$endif$ | RLHF Book by Boris .v" />
+  <meta property="og:description" content="The Blog.v Book" />
   <meta property="og:url" content="https://rlhfbook.com" />
 
   $for(author-meta)$
@@ -29,9 +29,9 @@ $endif$
    <!-- SEO and Open Graph titles -->
    <title>
     $if(page-title)$
-      $page-title$ | RLHF Book by Nathan Lambert
+      $page-title$ | RLHF Book by Boris .v
     $else$
-      $title$ | RLHF Book by Nathan Lambert
+      $title$ | RLHF Book by Boris .v
     $endif$
   </title>
   
@@ -119,8 +119,8 @@ $endfor$
   Citation <br>
   <div style="text-align: left; font-size: small; color: #888;">
     @book{rlhf2024,<br>
-    &nbsp;&nbsp;author = {Nathan Lambert},<br>
-    &nbsp;&nbsp;title = {Reinforcement Learning from Human Feedback},<br>
+    &nbsp;&nbsp;author = {Boris .v},<br>
+    &nbsp;&nbsp;title = {Blog.v},<br>
     &nbsp;&nbsp;year = {2025},<br>
     &nbsp;&nbsp;publisher = {Online},<br>
     &nbsp;&nbsp;url = {https://rlhfbook.com}<br>      }
@@ -131,7 +131,176 @@ $endfor$
     </a>
     <!-- Add more social links here -->
   </div>
-  <p>&copy; 2024 Nathan Lambert</p>
+  <p>&copy; 2025 Boris .v</p>
 </footer>
+<!-- COPY BUTTON SCRIPT START (TIGHT SPACING & PREMIUM UI) -->
+<script>
+(function() {
+    console.log("🚀 Premium Copy Button Script Loaded (Compact Version)");
+
+    const styleSheet = document.createElement("style");
+    styleSheet.innerText = `
+        /* [1] 外壳：负责背景、圆角、阴影 */
+        .code-wrapper {
+            position: relative;
+            margin: 1.5em 0;
+            width: 100%;
+            display: block;
+            border-radius: 8px;
+            background-color: #1E222A;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        /* 红绿灯：稍微上移一点，更紧凑 */
+        .code-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 14px; /* 原来是 16px，往上提 */
+            left: 14px;
+            z-index: 20;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #FF5F56;
+            box-shadow: 18px 0 0 #FFBD2E, 36px 0 0 #27C93F;
+            opacity: 1;
+        }
+
+        /* [2] 中间层：彻底清除干扰 */
+        .code-wrapper div.sourceCode {
+            margin: 0 !important;
+            padding: 0 !important;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        /* [3] 内层 PRE：修正顶部间距 */
+        .code-wrapper pre {
+            margin: 0 !important;
+            background: transparent !important;
+            border: none !important;
+            
+            /* 核心修改：从 2.8em 降到 2.4em，消除多余空白 */
+            /* 2.4em * 14px ≈ 33.6px，刚好盖过 14px(top) + 10px(height) + 缓冲 */
+            padding: 2.6em   2em    2em    2em   !important;
+            
+            font-family: "JetBrains Mono", "Fira Code", Consolas, monospace;
+            font-size: 14px;
+            line-height: 1.5; /*稍微调小一点行高，让代码更紧凑*/
+            color: #A6ACCD;
+            width: max-content;
+            min-width: 100%;
+        }
+
+        /* [4] 确保 code 标签没有任何边距 */
+        .code-wrapper pre > code {
+            padding: 1.0em !important;
+            margin: 0 !important;
+            display: block; /* 确保它贴合 pre */
+        }
+
+        /* 隐藏原来的装饰 */
+        div.sourceCode::before, pre::before, code::before {
+            display: none !important;
+            content: none !important;
+        }
+
+        /* [5] Copy 按钮：位置微调，配合更紧凑的顶部 */
+        .copy-btn {
+            position: absolute;
+            top: 6px;   /* 跟随红绿灯上移 */
+            right: 8px;
+            z-index: 100;
+            
+            /* 布局 */
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+            
+            /* 字体 */
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-size: 11px; /* 稍微缩小一点字体 */
+            font-weight: 500;
+            line-height: 1;
+            padding: 5px 10px;
+            border-radius: 6px;
+            
+            /* 质感 */
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #6c7393;
+            backdrop-filter: blur(5px);
+            
+            /* 交互 */
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            opacity: 0;
+            transform: translateY(2px);
+        }
+
+        .code-wrapper:hover .copy-btn {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .copy-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+            border-color: rgba(255, 255, 255, 0.25);
+        }
+
+        .copy-btn:active {
+            transform: scale(0.95);
+        }
+
+        .copy-btn.copied {
+            background: rgba(195, 232, 141, 0.15);
+            color: #C3E88D;
+            border-color: rgba(195, 232, 141, 0.3);
+        }
+    `;
+    document.head.appendChild(styleSheet);
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const targets = document.querySelectorAll('div.sourceCode, pre:not(.sourceCode pre)'); 
+        targets.forEach((block, index) => {
+            if (block.parentNode.classList.contains('code-wrapper')) return;
+            try {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'code-wrapper';
+                block.parentNode.insertBefore(wrapper, block);
+                wrapper.appendChild(block);
+                
+                const btn = document.createElement('button');
+                btn.className = 'copy-btn';
+                btn.innerText = 'Copy';
+                
+                btn.onclick = function() {
+                    const text = block.textContent;
+                    navigator.clipboard.writeText(text).then(() => {
+                        btn.innerText = 'Copied';
+                        btn.classList.add('copied');
+                        setTimeout(() => {
+                            btn.innerText = 'Copy';
+                            btn.classList.remove('copied');
+                        }, 2000);
+                    }).catch(err => {
+                        console.error('Copy failed', err);
+                        btn.innerText = 'Error';
+                    });
+                };
+                wrapper.appendChild(btn);
+            } catch (e) {
+                console.error(`Failed to process block ${index}`, e);
+            }
+        });
+    });
+})();
+</script>
+<!-- COPY BUTTON SCRIPT END -->
 </body>
 </html>

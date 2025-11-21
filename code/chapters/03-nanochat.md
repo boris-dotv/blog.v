@@ -1,14 +1,17 @@
 ---
 prev-chapter: "Key Related Works"
-prev-url: "02-related-works"
+prev-url: "02-cs336-LLM"
 page-title: Definitions & Background
 next-chapter: "Training Overview"
-next-url: "04-optimization"
+next-url: "04-deepresearch"
 ---
 
-# Definitions & Background
+# nanochat
 
-This chapter includes all the definitions, symbols, and operations frequently used in the RLHF process and with a quick overview of language models (the common optimization target of this book).
+1. 如何从零构建大语言模型.
+2. 当前有哪些通用语言模型的 benchmark?
+3. 当前大语言模型架构的格局是怎样的?
+4. Mamba, RWKV, DeltaNet...
 
 ## Language Modeling Overview
 

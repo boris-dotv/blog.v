@@ -12,8 +12,8 @@
   <meta property="og:image:height" content="1080" />
 
   <!-- <meta property="og:title" content="$if(title-prefix)$$title-prefix$ – $endif$$pagetitle$" /> -->
-  <meta property="og:title" content="RLHF Book by Nathan Lambert" />
-  <meta property="og:description" content="The Reinforcement Learning from Human Feedback Book" />
+  <meta property="og:title" content="RLHF Book by Boris .v" />
+  <meta property="og:description" content="The Blog.v Book" />
   <meta property="og:url" content="https://rlhfbook.com" />
 
   $for(author-meta)$
@@ -28,7 +28,7 @@ $endif$
   <!-- <title>$if(title-prefix)$$title-prefix$ – $endif$$pagetitle$</title> -->
    <!-- SEO and Open Graph titles -->
   <title>
-    RLHF Book by Nathan Lambert
+    RLHF Book by Boris .v
   </title>
 
   <style>
@@ -110,8 +110,8 @@ $endif$
     Citation <br>
     <div style="text-align: left; font-size: small; color: #888;">
       @book{rlhf2024,<br>
-      &nbsp;&nbsp;author = {Nathan Lambert},<br>
-      &nbsp;&nbsp;title = {Reinforcement Learning from Human Feedback},<br>
+      &nbsp;&nbsp;author = {Boris .v},<br>
+      &nbsp;&nbsp;title = {Blog.v},<br>
       &nbsp;&nbsp;year = {2025},<br>
       &nbsp;&nbsp;publisher = {Online},<br>
       &nbsp;&nbsp;url = {https://rlhfbook.com}<br>      }
@@ -122,7 +122,121 @@ $endif$
       </a>
       <!-- Add more social links here -->
     </div>
-    <p>&copy; 2024 Nathan Lambert</p>
+    <p>&copy; 2025 Boris .v</p>
   </footer>  
+  <script>
+  // 立即执行，不等待 DOMContentLoaded，防止被其他脚本阻塞
+  (function() {
+      console.log("🚀 Copy Button Script Starting...");
+
+      // 1. 动态注入 CSS (直接写在这里，无视缓存，无视 external css)
+      const styleSheet = document.createElement("style");
+      styleSheet.innerText = `
+          /* 包装器：给按钮提供定位基准 */
+          .code-wrapper {
+              position: relative;
+              margin: 1.5em 0;
+              width: 100%;
+          }
+          
+          /* 强制修正代码块的 margin，因为 wrapper 已经有 margin 了 */
+          .code-wrapper div.sourceCode,
+          .code-wrapper pre {
+              margin: 0 !important;
+          }
+
+          /* 隐藏原本的红绿灯 */
+          div.sourceCode::before {
+              display: none !important;
+              content: none !important;
+          }
+
+          /* 复制按钮：绝对定位，悬浮在 Wrapper 的右上角 */
+          .copy-btn {
+              position: absolute;
+              top: 8px;
+              right: 8px;
+              z-index: 9999; /* 极高层级 */
+              
+              background: rgba(255, 255, 255, 0.15);
+              border: 1px solid rgba(255, 255, 255, 0.2);
+              color: #aab1d3;
+              font-family: monospace;
+              font-size: 12px;
+              padding: 4px 8px;
+              border-radius: 4px;
+              cursor: pointer;
+              transition: all 0.2s;
+              opacity: 0.8;
+              display: block !important; /* 强制显示 */
+          }
+
+          .copy-btn:hover {
+              background: rgba(255, 255, 255, 0.3);
+              color: #fff;
+              opacity: 1;
+          }
+          
+          .copy-btn.copied {
+              background: #4caf50;
+              color: white;
+              border-color: #4caf50;
+          }
+      `;
+      document.head.appendChild(styleSheet);
+
+      // 2. 核心逻辑：页面加载完成后执行
+      document.addEventListener('DOMContentLoaded', function() {
+          // 找到所有目标代码块
+          const targets = document.querySelectorAll('div.sourceCode, pre:not(.sourceCode pre)'); 
+          console.log(`Found ${targets.length} code blocks.`);
+
+          targets.forEach((block, index) => {
+              // 避免重复处理
+              if (block.parentNode.classList.contains('code-wrapper')) return;
+
+              try {
+                  // 创建 Wrapper
+                  const wrapper = document.createElement('div');
+                  wrapper.className = 'code-wrapper';
+                  
+                  // 插入 Wrapper 到代码块前面
+                  block.parentNode.insertBefore(wrapper, block);
+                  
+                  // 把代码块挪进 Wrapper
+                  wrapper.appendChild(block);
+                  
+                  // 创建按钮
+                  const btn = document.createElement('button');
+                  btn.className = 'copy-btn';
+                  btn.innerText = 'Copy';
+                  
+                  // 绑定点击事件
+                  btn.onclick = function() {
+                      const text = block.textContent; // 获取代码文本
+                      navigator.clipboard.writeText(text).then(() => {
+                          btn.innerText = 'Copied!';
+                          btn.classList.add('copied');
+                          setTimeout(() => {
+                              btn.innerText = 'Copy';
+                              btn.classList.remove('copied');
+                          }, 2000);
+                      }).catch(err => {
+                          console.error('Copy failed', err);
+                          btn.innerText = 'Error';
+                      });
+                  };
+
+                  // 把按钮也加进 Wrapper (注意：加在 block 后面，但在绝对定位下位置由 CSS 决定)
+                  wrapper.appendChild(btn);
+                  
+                  console.log(`Processed block ${index}`);
+              } catch (e) {
+                  console.error(`Failed to process block ${index}`, e);
+              }
+          });
+      });
+  })();
+  </script>
 </body>
 </html>

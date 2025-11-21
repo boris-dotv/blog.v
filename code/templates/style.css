@@ -14,66 +14,127 @@ html {
 }
 
 
-
 /* ========================================================= */
-/*  VS Code "Dark+" Theme Inspired Style for Code Blocks     */
+/*  Theme: Deep Nebula (Premium UI Version)                  */
 /* ========================================================= */
 
-/* --- Main container for the code block --- */
+/* [1] 包装器：红绿灯和按钮的宿主 */
+.code-wrapper {
+    position: relative;
+    margin: 1.5em 0;
+    width: 100%;
+    display: block;
+    border-radius: 12px; /* 更圆润的边角 */
+    background-color: #1E222A; /* 背景色提到底层，防缝隙 */
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4); /* 更深邃的阴影 */
+    border: 1px solid rgba(255, 255, 255, 0.08); /* 极细的高级边框 */
+}
+
+/* [2] 左上角红绿灯 (Mac Style) - 绝对定位在 Wrapper 上 */
+.code-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    z-index: 20; /* 在代码之上 */
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #FF5F56; /* 红 */
+    box-shadow: 
+        18px 0 0 #FFBD2E, /* 黄 */
+        36px 0 0 #27C93F; /* 绿 */
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
+}
+.code-wrapper:hover::before {
+    opacity: 1; /* 悬停时更亮 */
+}
+
+/* [3] 滚动容器：只负责滚动 */
 div.sourceCode {
-    background-color: #1E1E1E; /* VS Code's iconic dark background */
-    border: 1px solid #252526; /* A subtle border matching VS Code */
-    border-radius: 4px;
-    padding: 1em;
+    background: transparent; /* 背景色交给 wrapper */
+    margin: 0;
+    width: 100%;
+    border: none;
+    box-shadow: none;
     overflow-x: auto;
+    border-radius: 12px;
 }
 
-/* --- Targeting the actual code elements for font styles --- */
-div.sourceCode pre,
-div.sourceCode code {
-    font-family: Consolas, "Courier New", Courier, monospace; /* Essential monospaced font stack */
-    font-size: 14px;
-    line-height: 1.5;
-    color: #D4D4D4; /* Default text color (light gray) */
-    white-space: pre; /* Preserve whitespace and line breaks */
-    background-color: transparent; /* Ensure no inner background overrides the container */
-}
-
-/* --- Syntax Highlighting Colors (mapped from Pandoc classes to VS Code colors) --- */
-div.sourceCode .kw { color: #569CD6; } /* Keywords (def, class, import...) */
-div.sourceCode .dt { color: #4EC9B0; } /* Data types (int, str...) */
-div.sourceCode .dv, .bn, .fl, .cn { color: #B5CEA8; } /* Numbers (123, 0b101, 1.23, constants) */
-div.sourceCode .ch, .st { color: #CE9178; } /* Strings and characters ("hello") */
-div.sourceCode .co { color: #6A9955; } /* Comments */
-div.sourceCode .al { color: #FF0000; } /* Alerts */
-div.sourceCode .fu { color: #DCDCAA; } /* Function names */
-div.sourceCode .er { color: #F44747; font-weight: bold; } /* Errors */
-div.sourceCode .wa { color: #FFCC00; } /* Warnings */
-div.sourceCode .op { color: #D4D4D4; } /* Operators (+, -, =) */
-
-/* ========================================================= */
-/*  Fallback Style for code blocks WITHOUT a language ID     */
-/*  This styles the basic <pre><code> block                */
-/* ========================================================= */
-
-pre > code {
-    /*
-     * This rule targets any <code> element that is a direct child of a <pre> element.
-     * It acts as a fallback for when Pandoc doesn't generate the .sourceCode div.
-     * Note: This will NOT have syntax highlighting, only the container style.
-    */
-    display: block; /* Crucial for applying padding and block-level styles */
+/* [4] 代码内容区域 */
+div.sourceCode pre {
+    width: max-content;
+    min-width: 100%;
+    background: transparent;
+    color: #A6ACCD;
     
-    /* --- Replicating the VS Code container style --- */
-    font-family: Consolas, "Courier New", Courier, monospace;
+    /* 上方留出更多空间给红绿灯和按钮 */
+    padding: 3.2em 1.5em 1.5em 1.5em; 
+    
+    margin: 0;
+    font-family: "JetBrains Mono", "Fira Code", Consolas, monospace;
     font-size: 14px;
-    line-height: 1.5;
-    color: #D4D4D4;
-    background-color: #1E1E1E;
-    border: 1px solid #252526;
-    border-radius: 4px;
-    padding: 1em;
+    line-height: 1.6;
+    border: none;
+}
+
+/* [5] 隐藏 Pandoc 可能生成的旧红绿灯 */
+div.sourceCode::before {
+    display: none !important;
+    content: none !important;
+}
+
+/* [6] 高级感 Copy 按钮 (CSS Fallback) */
+/* 主要样式会由 JS 注入，但这里保留一份作为备份 */
+.copy-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 50;
+    display: none; /* 默认隐藏，JS 会改为 flex */
+}
+/* --- 5. 颜色高亮修复（保持你之前的设定） --- */
+div.sourceCode .va { color: #FFCB6B; } /* 变量 */
+div.sourceCode .kw { color: #C792EA; font-weight: bold; } /* def, class */
+div.sourceCode .dt { color: #89DDFF; font-style: italic; } /* int */
+div.sourceCode .dv, div.sourceCode .bn { color: #F78C6C; } /* 数字 */
+div.sourceCode .st, div.sourceCode .ch { color: #C3E88D; } /* 字符串 */
+div.sourceCode .co { color: #676E95; font-style: italic; } /* 注释 */
+div.sourceCode .fu { color: #82AAFF; } /* 函数名 */
+div.sourceCode .bp, div.sourceCode .bu { color: #F07178; font-style: italic; } /* self, None */
+
+
+/* ========================================================= */
+/*  Fallback for generic <pre><code> (No language specified) */
+/* ========================================================= */
+pre > code {
+    display: block;
+    background-color: #1E222A;
+    color: #A6ACCD;
+    font-family: "JetBrains Mono", "Fira Code", Consolas, monospace;
+    font-size: 14px;
+    line-height: 1.6;
+    padding: 2.5em 1.2em 1.2em 1.2em;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    position: relative;
     overflow-x: auto;
+}
+
+/* 同样加上装饰点，保持统一 */
+pre > code::before {
+    content: '';
+    position: absolute;
+    top: 18px;
+    left: 18px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #FF5F56;
+    box-shadow: 18px 0 0 #FFBD2E, 36px 0 0 #27C93F;
+    opacity: 0.8;
 }
 
 body {

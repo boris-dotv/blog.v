@@ -30,8 +30,8 @@ class NavigationDropdown extends HTMLElement {
     <div class="section">
       <h3>Introductions</h3>
       <ol start="1">
-        <li><a href="/c/01-introduction.html">Leetcode (hot 100)</a></li>
-        <li><a href="/c/02-related-works.html">nanochat</a></li>
+        <li><a href="/c/01-leetcode.html">Leetcode (hot 100)</a></li>
+        <li><a href="/c/02-cs336-LLM.html">nanochat</a></li>
         
       </ol>
     </div>
@@ -39,8 +39,8 @@ class NavigationDropdown extends HTMLElement {
     <div class="section">
       <h3>Problem Setup & Context</h3>
       <ol start="4">
-        <li><a href="/c/03-setup.html">Deep Research</a></li>
-        <li><a href="/c/04-optimization.html">MTProto</a></li>
+        <li><a href="/c/03-nanochat.html">Deep Research</a></li>
+        <li><a href="/c/04-deepresearch.html">MTProto</a></li>
       </ol>
     </div>
 
