@@ -58,41 +58,32 @@ jobs:
       - name: Build Site
         working-directory: ./code
         run: |
-          # 1. 生成 HTML
           make html
           
-          echo "=== Force Copying Assets (JS/CSS/Images) ==="
+          echo "=== Force Copying Assets ==="
           
-          # -------------------------------------------------------
-          # A. 复制 JS/CSS/Favicon (之前的步骤)
-          # -------------------------------------------------------
-          # 复制到根目录
+          # 1. 根目录 (给 index.html 用)
           cp templates/*.js build/html/ || true
           cp templates/*.css build/html/ || true
           cp templates/favicon.ico build/html/ || true
           
-          # 复制到子目录 c/
+          # 2. 子目录 c/ (给文章页用)
           mkdir -p build/html/c
           cp templates/*.js build/html/c/ || true
           cp templates/*.css build/html/c/ || true
           
-          # -------------------------------------------------------
-          # B. 【新增】复制图片 (Fix Images 404)
-          # -------------------------------------------------------
-          # 你的文章在 c/ 目录下，引用路径是 images/xxx.png
-          # 所以我们需要把图片复制到 build/html/c/images/
+          # 【新增】这行是你缺少的！把图标也复制到子目录去
+          cp templates/favicon.ico build/html/c/ || true
           
+          # 3. 图片
           mkdir -p build/html/c/images
-          
-          # 假设你的图片都在 code/chapters/images 里面
-          # -r 表示递归复制整个文件夹
           cp -r chapters/images/* build/html/c/images/ || true
           
-          # 如果你根目录也有 images (code/images)，也复制一份到根目录备用
+          # 备份一份图片到根目录 (可选)
           mkdir -p build/html/images
           cp -r images/* build/html/images/ || true
 
-          echo "=== Final Directory Structure ==="
+          echo "=== Assets listing ==="
           ls -R build/html
 
       # ========================================================
