@@ -44,7 +44,6 @@ jobs:
       - name: Build Site
         working-directory: ./code  # 进入 code 目录
         run: |
-          make clean
           make html
           # 注意：我暂时注释掉了 make files。
           # 因为生成 PDF (latex) 需要下载好几个G的环境，会让构建非常慢甚至失败。
