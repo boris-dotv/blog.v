@@ -136,6 +136,7 @@ $(BUILD)/html/$(OUTPUT_FILENAME_HTML).html:	$(HTML_DEPENDENCIES)
 	$(COPY_CMD) templates/nav.js $(BUILD)/html/c/
 	$(COPY_CMD) templates/header-anchors.js $(BUILD)/html/c/
 	$(COPY_CMD) templates/table-scroll.js $(BUILD)/html/c/
+	$(COPY_CMD) templates/sidebar.js $(BUILD)/html/c/ 
 	cp templates/style.css $(BUILD)/html/style.css || echo "Failed to copy style.css"
 	@mkdir -p $(BUILD)/html/data
 	@test -f data/library.json && cp data/library.json $(BUILD)/html/data/library.json || echo "No library data to copy"
@@ -220,6 +221,7 @@ files:
 	cp -R preorder $(BUILD)/html/ || echo "Failed to copy preorder static pages"
 	cp $(BUILD)/pdf/book.pdf $(BUILD)/html/ || echo "Failed to copy to $(BUILD)/html/"
 	cp $(BUILD)/epub/book.epub $(BUILD)/html/ || echo "Failed to copy EPUB to $(BUILD)/html/"
+	cp -r chapters/images/* images/
 	cp -r images $(BUILD)/html/c/ || echo "Failed to copy to $(BUILD)/html/chapters/"
 	cp ./templates/nav.js $(BUILD)/html/ || echo "Failed to copy nav.js to $(BUILD)/html/"
 	cp ./templates/nav.js $(BUILD)/html/c/ || echo "Failed to copy nav.js to $(BUILD)/html/c/"
@@ -227,3 +229,5 @@ files:
 	cp ./templates/header-anchors.js $(BUILD)/html/c/ || echo "Failed to copy header-anchors.js to $(BUILD)/html/c/"
 	cp ./templates/table-scroll.js $(BUILD)/html/ || echo "Failed to copy table-scroll.js to $(BUILD)/html/"
 	cp ./templates/table-scroll.js $(BUILD)/html/c/ || echo "Failed to copy table-scroll.js to $(BUILD)/html/c/"
+	cp ./templates/sidebar.js $(BUILD)/html/ || echo "..."
+	cp ./templates/sidebar.js $(BUILD)/html/c/ || echo "..."

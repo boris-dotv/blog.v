@@ -40,11 +40,11 @@
     - **Leetcode 博客** -- 第一遍进度 14 / 102.
     - [**公开课 CS336**](https://www.youtube.com/watch?v=SQ3fZ1sAqXI&list=PLoROMvodv4rOY23Y0BoGoBGgQ1zmU_MT_) -- 1. 暂未开始.
     - **nanochat 博客** -- 1. 正文: 未开始.
-    - **Deep Research 博客** -- 1. 正文: 未开始; 2. 实践: 完成 WebWeaver 的阅读, 并搭建完毕 Deep Research Bench 的运行环境.
-    - **TDLib 博客** -- 1. 正文: 未开始; 2. 实践: 打通客户端服务端的信息传递 C++ 线路, 构建了第一个属于自己的 bot.
-    - **llama.cpp 博客** -- 1. 暂未开始.
+
+    - **llama.cpp 博客** -- 1. 正文: 未开始; 2. 实践: 完成 WebWeaver 的阅读, 并搭建完毕 Deep Research Bench 的运行环境.
+    - **reth 博客** -- https://github.com/paradigmxyz/reth
     - [**公开课 CSAPP**](https://www.bilibili.com/video/BV1qotgeXE8D/?spm_id_from=333.337.search-card.all.click&vd_source=d925ec444f980704d6cc1c68facf3aad) -- 1. 暂未开始.
-    - [**公开课 CS144**](https://www.bilibili.com/video/BV1iW411d7hd/?spm_id_from=333.337.search-card.all.click&vd_source=d925ec444f980704d6cc1c68facf3aad) -- 1. 暂未开始 (优先级最低).
+    - **公开课 6.824** -- 1. 暂未开始 (优先级最低).
 
 
 

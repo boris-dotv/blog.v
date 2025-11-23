@@ -6,11 +6,13 @@
  * Substantial modifications made by natolambert
  */
 
+/* 找到原本的 html { ... }，替换为： */
 html {
     font-size: 100%;
-    overflow-y: scroll;
+    /* 删掉 overflow-y: scroll; 让浏览器自己处理滚动条 */
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
+    scroll-behavior: smooth; /* 顺手加上这个，点击目录跳转更丝滑 */
 }
 
 
@@ -647,3 +649,135 @@ thead {
       font-size: 14px;
     }
   }
+
+/* ========================================================= */
+/*  Sidebar Layout Implementation (FINAL FIXED VERSION)      */
+/* ========================================================= */
+
+/* 1. Body 设置：严禁使用 overflow: hidden/auto/scroll，否则 sticky 会失效 */
+body {
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background-color: #fefefe;
+    /* 删除了 overflow-x: hidden，这是 sticky 失效的根源 */
+    overflow: visible !important; 
+}
+
+/* 2. 页面主容器 */
+.page-wrapper {
+    display: flex;
+    flex-direction: row;
+    /* 必须拉伸，这样侧边栏的高度才会和正文一样高，才有空间“滑” */
+    align-items: stretch; 
+    justify-content: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+    gap: 40px;
+    box-sizing: border-box;
+    /* 确保容器本身没有 overflow */
+    overflow: visible !important; 
+}
+
+/* 3. 侧边栏轨道 */
+#sidebar {
+    width: 250px;
+    flex-shrink: 0;
+    /* 让 flexbox 自动拉伸高度 */
+    height: auto; 
+    min-height: 100%;
+    /* 确保轨道没有 overflow */
+    overflow: visible !important;
+    position: relative;
+}
+
+/* 4. 真正悬浮的目录容器 */
+.sticky-container {
+    /* 核心悬浮属性 */
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    
+    /* 距离浏览器顶部的距离 */
+    top: 20px; 
+    
+    /* 限制高度，确保目录太长时内部可以滚动，而不影响 sticky 效果 */
+    max-height: calc(100vh - 40px);
+    overflow-y: auto; 
+    
+    /* 美化一下侧边栏的滚动条 */
+    scrollbar-width: thin;
+}
+
+/* 目录链接样式 (保持原样) */
+#sidebar h3 {
+    font-size: 1.1em;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+    margin-top: 0;
+    color: #333;
+}
+
+#sidebar ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+#sidebar li {
+    margin-bottom: 8px;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+#sidebar a {
+    color: #666;
+    text-decoration: none;
+    display: block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+#sidebar a:hover {
+    background-color: #f0f0f0;
+    color: #0066cc;
+}
+
+#sidebar a.h2 { font-weight: 600; }
+#sidebar a.h3 { padding-left: 15px; color: #888; font-size: 0.95em; }
+#sidebar a.active { color: #0066cc; background-color: #e6f0ff; } /* 高亮当前样式 */
+
+/* 5. 正文区域 */
+.main-content {
+    flex-grow: 1;
+    max-width: 48em; /* 保持原本的阅读宽度 */
+    min-width: 0; /* 防止代码块撑爆布局 */
+}
+
+/* 头部和底部修正 */
+header#title-block-header, footer {
+    max-width: 48em;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* ========================================================= */
+/*  Mobile Responsive (小屏隐藏侧边栏)                       */
+/* ========================================================= */
+@media screen and (max-width: 1000px) {
+    .page-wrapper {
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+    }
+
+    #sidebar {
+        display: none; 
+    }
+    
+    .main-content {
+        max-width: 100%;
+        padding: 0 15px;
+    }
+}

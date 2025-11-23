@@ -20,10 +20,7 @@ class NavigationDropdown extends HTMLElement {
       <h3>Links</h3>
       <ul>
         <li><a href="/">Home</a></li>
-        <li><a href="https://github.com/natolambert/rlhf-book">GitHub Repository</a></li>
-        <li><a href="/book.pdf">PDF</a> / <a href="https://arxiv.org/abs/2504.12501">Arxiv</a> / <a href="/book.epub">EPUB</a></li>
-        <li><a href="https://hubs.la/Q03Tc3cf0">Pre-order now!</a></li>
-        <li><a href="/library.html">Example Model Completions</a></li>
+        <li><a href="https://boris-dotv.github.io/">.v's homapege</a></li>
       </ul>
     </div>
 
@@ -31,7 +28,7 @@ class NavigationDropdown extends HTMLElement {
       <h3>Introductions</h3>
       <ol start="1">
         <li><a href="/c/01-leetcode.html">Leetcode (hot 100)</a></li>
-        <li><a href="/c/02-cs336-LLM.html">nanochat</a></li>
+        <li><a href="/c/02-cs336-LLM.html">CS336</a></li>
         
       </ol>
     </div>
@@ -39,8 +36,8 @@ class NavigationDropdown extends HTMLElement {
     <div class="section">
       <h3>Problem Setup & Context</h3>
       <ol start="4">
-        <li><a href="/c/03-nanochat.html">Deep Research</a></li>
-        <li><a href="/c/04-deepresearch.html">MTProto</a></li>
+        <li><a href="/c/03-nanochat.html">nanochat</a></li>
+        <li><a href="/c/04-deepresearch.html">Deep Research</a></li>
       </ol>
     </div>
 

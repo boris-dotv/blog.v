@@ -8,13 +8,21 @@ next-url: "02-cs336-LLM"
 
 # Leetcode (Hot 100)
 
-* **题目来源**: [LeetCode 热题 100](https://leetcode.cn/studyplan/top-100-liked/)
+* **题目来源**: [LeetCode 热题 100](https://leetcode.cn/studyplan/top-100-liked/).
 * **题解可视化**: 本文所有代码均可直接复制到: [Python Tutor](https://pythontutor.com/render.html#mode=edit) 进行可视化运行.
+* [为什么计算机中需要从 0 开始计数?](https://www.cs.utexas.edu/~EWD/transcriptions/EWD08xx/EWD831.html)
+
+
+
+
+
+
 
 
 
 
 ## 哈希
+
 
 
 
