@@ -54,15 +54,34 @@ jobs:
         run: |
           pip install jupyter nbconvert pandoc-include
 
+      # -----------------------------------------------------------
+      # 修改后的 Build 步骤：增加了强制复制 (Force Copy)
+      # -----------------------------------------------------------
       - name: Build Site
         working-directory: ./code
         run: |
+          # 1. 正常生成 HTML
           make html
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: 'code/build/html'
+          
+          # 2. 【关键补丁】强制把 JS/CSS/图标 复制到构建目录
+          # 这样无论 Makefile 里的复制命令在 Linux 上有没有生效，
+          # 我们都在这里再执行一次，确保万无一失。
+          
+          echo "=== Force Copying Assets ==="
+          
+          # 复制到根目录 (给 index.html 用)
+          cp templates/*.js build/html/ || true
+          cp templates/*.css build/html/ || true
+          cp templates/favicon.ico build/html/ || true
+          
+          # 复制到子目录 c/ (给文章页用)
+          # 如果 build/html/c 目录不存在，先创建它
+          mkdir -p build/html/c
+          cp templates/*.js build/html/c/ || true
+          cp templates/*.css build/html/c/ || true
+          
+          echo "=== Assets listing ==="
+          ls -R build/html
 
   deploy:
     environment:
