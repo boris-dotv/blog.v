@@ -52,18 +52,20 @@ jobs:
         run: |
           pip install jupyter nbconvert pandoc-include
 
-      # ========================================================
-      # 3. 构建网站 & 强制复制资源
-      # ========================================================
+      # -----------------------------------------------------------
+      # 修改后的 Build 步骤：包含图片复制
+      # -----------------------------------------------------------
       - name: Build Site
         working-directory: ./code
         run: |
-          # 正常生成 HTML
+          # 1. 生成 HTML
           make html
           
-          # 【关键补丁】强制把 JS/CSS/图标 复制到构建目录
-          echo "=== Force Copying Assets ==="
+          echo "=== Force Copying Assets (JS/CSS/Images) ==="
           
+          # -------------------------------------------------------
+          # A. 复制 JS/CSS/Favicon (之前的步骤)
+          # -------------------------------------------------------
           # 复制到根目录
           cp templates/*.js build/html/ || true
           cp templates/*.css build/html/ || true
@@ -74,7 +76,23 @@ jobs:
           cp templates/*.js build/html/c/ || true
           cp templates/*.css build/html/c/ || true
           
-          echo "=== Assets listing ==="
+          # -------------------------------------------------------
+          # B. 【新增】复制图片 (Fix Images 404)
+          # -------------------------------------------------------
+          # 你的文章在 c/ 目录下，引用路径是 images/xxx.png
+          # 所以我们需要把图片复制到 build/html/c/images/
+          
+          mkdir -p build/html/c/images
+          
+          # 假设你的图片都在 code/chapters/images 里面
+          # -r 表示递归复制整个文件夹
+          cp -r chapters/images/* build/html/c/images/ || true
+          
+          # 如果你根目录也有 images (code/images)，也复制一份到根目录备用
+          mkdir -p build/html/images
+          cp -r images/* build/html/images/ || true
+
+          echo "=== Final Directory Structure ==="
           ls -R build/html
 
       # ========================================================
