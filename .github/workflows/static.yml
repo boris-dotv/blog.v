@@ -1,0 +1,76 @@
+name: Build and Deploy Blog
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # ========================================================
+      # 暴力安装阶段：手动下载匹配的二进制文件
+      # 既然插件不可靠，我们就自己动手，保证 100% 能找到
+      # ========================================================
+      - name: Manual Install Pandoc & Crossref
+        run: |
+          # 1. 下载 Pandoc (v3.1.11)
+          wget -q https://github.com/jgm/pandoc/releases/download/3.1.11/pandoc-3.1.11-1-amd64.deb
+          sudo dpkg -i pandoc-3.1.11-1-amd64.deb
+
+          # 2. 下载对应的 Crossref (v0.3.17.1)
+          wget -q https://github.com/lierdakil/pandoc-crossref/releases/download/v0.3.17.1b/pandoc-crossref-Linux.tar.xz
+          tar -xf pandoc-crossref-Linux.tar.xz
+          
+          # 3. 强制移动到系统 /usr/bin 目录，并给予执行权限
+          sudo mv pandoc-crossref /usr/bin/
+          sudo chmod +x /usr/bin/pandoc-crossref
+          
+          # 4. 验证一下安装成功没 (会在日志里打印版本)
+          echo "Pandoc version:"
+          pandoc --version
+          echo "Crossref path:"
+          which pandoc-crossref
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install Python Dependencies
+        run: |
+          pip install jupyter nbconvert pandoc-include
+
+      - name: Build Site
+        working-directory: ./code
+        run: |
+          make html
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'code/build/html'
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
