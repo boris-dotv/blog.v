@@ -266,6 +266,218 @@ print("\n All test cases passed successfully!")
 
 ## 链表
 
+
+### [160. 相交链表](https://leetcode.cn/problems/intersection-of-two-linked-lists)
+
+* 方法: .
+* 时间复杂度: .
+* 空间复杂度: .
+
+
+```python
+from typing import Optional
+
+class ListNode:
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+
+class Solution160:
+    def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
+        if not headA or not headB:
+            return None
+        pA, pB = headA, headB
+        while pA is not pB:
+            pA = pA.next if pA else headB
+            pB = pB.next if pB else headA
+        return pA
+
+
+def build_intersecting_lists(listA_vals, listB_vals, skipA, skipB):
+    """
+    根据 LeetCode 的输入格式构建两条链表, skip 意味着跳过前 skip 个点.
+    """
+    # 如果 skipA 的值大于等于 listA 的长度，说明它们不可能在 listA 内相交
+    if skipA >= len(listA_vals) or skipB >= len(listB_vals):
+
+        headA_dummy = ListNode(0)
+        currA = headA_dummy
+        for val in listA_vals:
+            currA.next = ListNode(val)
+            currA = currA.next
+
+        headB_dummy = ListNode(0)
+        currB = headB_dummy
+        for val in listB_vals:
+            currB.next = ListNode(val)
+            currB = currB.next
+            
+        return headA_dummy.next, headB_dummy.next, None
+
+    intersection_head = None
+    intersection_dummy = ListNode(0)
+    curr_common = intersection_dummy
+
+    # 公共部分从 listA 的第 skipA 个元素开始
+    for i in range(skipA, len(listA_vals)):
+        node = ListNode(listA_vals[i])
+        curr_common.next = node
+        curr_common = curr_common.next
+    intersection_head = intersection_dummy.next
+    
+    # --- 创建链表 A 的非公共部分, 并连接到公共部分 ---
+    headA_dummy = ListNode(0)
+    currA = headA_dummy
+    for i in range(skipA):
+        currA.next = ListNode(listA_vals[i])
+        currA = currA.next
+    currA.next = intersection_head
+    headA = headA_dummy.next
+
+    # --- 创建链表 B 的非公共部分, 并连接到公共部分 ---
+    headB_dummy = ListNode(0)
+    currB = headB_dummy
+    for i in range(skipB):
+        currB.next = ListNode(listB_vals[i])
+        currB = currB.next
+    currB.next = intersection_head
+    headB = headB_dummy.next
+
+    return headA, headB, intersection_head
+
+test_cases = [
+    ("Example 1", [1, 9, 1, 2, 4], [3, 2, 4], 3, 1),
+    ("Example 2 (No Intersection)", [2, 6, 4], [1, 5], 3, 2),
+    ("Common Case", [4, 1, 8, 4, 5], [5, 6, 1, 8, 4, 5], 2, 3),
+    ("Intersection at Head", [7, 8, 9], [7, 8, 9], 0, 0),
+    ("One List is Empty", [], [1, 2, 3], 0, 3),
+    ("Both Lists are Empty", [], [], 0, 0)
+]
+
+sol = Solution160()
+
+for i, (name, listA_vals, listB_vals, skipA, skipB) in enumerate(test_cases):
+    headA, headB, expected_node = build_intersecting_lists(listA_vals, listB_vals, skipA, skipB)
+
+    result_node = sol.getIntersectionNode(headA, headB)
+    err_msg = (
+        f"Test Case {i + 1} '{name}' Failed.\n"
+        f"  Input: listA={listA_vals}, listB={listB_vals}, skipA={skipA}, skipB={skipB}\n"
+        f"  Expected: {expected_node}\n"
+        f"  Got:      {result_node}"
+    )
+    assert result_node is expected_node, err_msg
+
+print("\nAll test cases passed successfully!")
+```
+
+### [146. LRU 缓存](https://leetcode.cn/problems/lru-cache/)
+
+* 方法: .
+* 时间复杂度: .
+* 空间复杂度: .
+
+```python
+class DLinkedNode:
+    def __init__(self, key=0, value=0):
+        self.key = key
+        self.value = value
+        self.prev = None
+        self.next = None
+
+class LRUCache:
+    def __init__(self, capacity: int):
+        self.capacity = capacity
+        self.size = 0
+        self.cache = dict()
+        self.dummyhead = DLinkedNode()
+        self.dummytail = DLinkedNode()
+        self.dummyhead.next = self.dummytail
+        self.dummytail.prev = self.dummyhead
+
+    def get(self, key: int) -> int:
+        if key not in self.cache:
+            return -1
+        node = self.cache[key]
+        self.movetohead(node)
+        return node.value
+
+    def put(self, key: int, value: int):
+        if key not in self.cache:
+            node = DLinkedNode(key, value)
+            self.cache[key] = node
+            self.addtohead(node)
+            self.size += 1
+            if self.size > self.capacity:
+                removed = self.removetail()
+                del self.cache[removed.key]
+                self.size -= 1
+        else:
+            node = self.cache[key]
+            node.value = value
+            self.movetohead(node)
+
+    def movetohead(self, node: DLinkedNode):
+        """get, put 完旧节点时用; 套壳方法"""
+        self.removenode(node)
+        self.addtohead(node)
+
+    def addtohead(self, node: DLinkedNode):
+        """put 新节点时用"""
+        node.prev = self.dummyhead
+        node.next = self.dummyhead.next
+        self.dummyhead.next.prev = node
+        self.dummyhead.next = node
+
+    def removenode(self, node: DLinkedNode):
+        node.prev.next = node.next
+        node.next.prev = node.prev
+
+    def removetail(self):
+        """put 过载时用"""
+        tail = self.dummytail.prev
+        self.removenode(tail)
+        return tail
+
+
+test_cases = [
+    (
+        ["LRUCache", "put", "put", "get", "put", "get", "put", "get", "get", "get"],
+        [[2], [1, 1], [2, 2], [1], [3, 3], [2], [4, 4], [1], [3], [4]],
+        [None, None, None, 1, None, -1, None, -1, 3, 4]
+    ),
+    (
+        ["LRUCache", "put", "get", "put", "get"],
+        [[1], [2, 1], [2], [3, 2], [2]],
+        [None, None, 1, None, -1]
+    )
+]
+
+for i, (methods, args, expected) in enumerate(test_cases):
+    obj = None
+    for j, (method, arg, expect) in enumerate(zip(methods, args, expected)):
+        result = None
+        if method == "LRUCache":
+            obj = LRUCache(arg[0])
+            result = None
+        elif method == "put":
+            obj.put(arg[0], arg[1])
+            result = None
+        elif method == "get":
+            result = obj.get(arg[0])
+
+        err_msg = (
+            f"Test Case {i + 1} Failed at step {j} ({method}).\n"
+            f"Input: {arg}\n"
+            f"Expected: {expect}\n"
+            f"Got: {result}"
+        )
+        assert result == expect, err_msg
+print("\nAll test cases passed successfully!")
+```
+
+
+
 ### [206. 反转链表](https://leetcode.cn/problems/reverse-linked-list/description)
 
 * 方法: 迭代法 -- 经典方法, 必背. 参考灵山的视频.
@@ -547,6 +759,63 @@ print("\n All test cases passed successfully!")
 ```
 
 
+## 贪心算法
+
+### [121. 买卖股票的最佳时机](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock)
+
+* 方法: 贪心算法 -- 当天股价和当天以前的最低股价之差的最大值, 就是答案.
+* 时间复杂度: O(n) -- 仅遍历每一天一次.
+* 空间复杂度: O(1) -- 只额外定义了两个变量.
+
+```python
+from typing import List
+class Solution121:
+    def maxProfit(self, prices: List[int]) -> int:
+        minprice = float('inf')
+        maxprofit = 0
+        for price in prices:
+            minprice = min(minprice, price)
+            maxprofit = max(maxprofit, price - minprice)
+        return maxprofit
+
+sol = Solution121()
+test_cases = [
+    ([7,1,5,3,6,4], 5),
+    ([7,6,4,3,1], 0)
+]
+for i, (input, res) in enumerate(test_cases):
+    assert sol.maxProfit(input) == res, f"test case {i + 1} failed."
+print("\nAll test cases passed successfully!")
+```
+
+
+
+### [122. 买卖股票的最佳时机Ⅱ](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-ii/)
+
+* 方法: 贪心算法 -- 思路十分简单, 只要比前一天价格高, 就把它卖掉, 最终利润就是多次买卖同时只能持一股的最大利润.
+* 时间复杂度: O(n) -- 对于每一天, 仅仅遍历一次.
+* 空间复杂度: O(n) -- 仅额外定义了 profit 变量.
+
+```python
+from typing import List
+class Solution122:
+    def maxProfit(self, prices: List[int]) -> int:
+        profit = 0
+        for i in range(1, len(prices)):
+            if prices[i] > prices[i - 1]:
+                profit += prices[i] - prices[i - 1]
+        return profit
+
+sol = Solution122()
+test_cases = [
+    ([7,1,5,3,6,4], 7),
+    ([1,2,3,4,5], 4)
+]
+for i, (input, res) in enumerate(test_cases):
+    assert sol.maxProfit(input) == res, f"test case {i + 1} failed."
+print("\nAll test cases passed successfully!")
+
+```
 
 
 
@@ -618,4 +887,179 @@ test_cases = [
 for i, (k, nums, res) in enumerate(test_cases):
     assert sol.findKthLargest(nums, k) == res, f"test cases {i + 1} failed."
 print("\n All test cases passed successfully!")
+```
+
+
+
+
+
+
+
+## 动态规划
+
+### [279. 完全平方数](https://leetcode.cn/problems/perfect-squares/)
+
+* 方法: DP / BFS -- 看到最少, 最短, 最小等字眼的时候, 立刻闪现的经典算法思路是 1. BFS, 2. DP.
+    1. BFS: "求和为 n 的最少完全平方数的数量" 转化成 "求解图中从节点 n 到节点 0 的最短路径长度". (两个节点 (数字) u 和 v 之间可以通过减去一个完全平方数进行转换 (即 u - k*k = v), 那么就认为从 u 到 v 有一条边. 这个图是一个无向图, 因为我们只关心状态之间的转换.) BFS 的特性保证了当你第一次从队列中取出并访问到目标节点 0 时, 你所经过的层数 (也就是 steps) 一定是最小的.
+    2. DP: 要求解 n 的最优解, 可以依赖于比 n 小的数值的最优解.
+    3. 拓展: 拉格朗日四平方和定理. 定理告诉我们答案只能是 1, 2, 3, 4 其中的一个.
+* 时间复杂度:
+    1. BFS: O(V + E) -- V 是节点数量, E 是边的数量, 而在图中的节点是 n 到 0 之间的数字, 最坏情况是要访问所有的 n+1 个数字, V 的数量级是 O(n), 对于 E, 每一个节点的下一跳的可能个数是 sqrt(current_num) 条, 所以 BFS 时间复杂度总体就是 O(n + n * sqrt(n)), 就是 O(n * sqrt(n)).  
+    2. DP: O(n * sqrt(n)) -- 代码中有两层循环, 外层循环从 1 遍历到 n, 复杂度为 O(n). 内层 while 循环的条件是 j * j <= i, 这意味着 j 的最大值是 sqrt(i).
+* 空间复杂度:
+    1. BFS: O(n) -- visited 集合在最坏的情况下, 需要存储从 n 到 0 的所有中间结果, 所以其大小可以达到 O(n). queue 队列中存储待访问的节点, 其大小也与 n 相关, 最坏情况也会达到 O(n) 的级别.
+    2. DP: O(n) -- 创建了一个长度为 n + 1 的 dp 数组来存储从 0 到 n 每个数字的解. 因此, 空间开销与 n 呈线性关系.
+
+
+```python
+import collections
+class Solution279DP:
+    def numSquares(self, n: int) -> int:
+        # 1. 创建并初始化 dp 数组
+        dp = [float('inf')] * (n + 1)
+        dp[0] = 0
+
+        # 2. 从 1 遍历到 n
+        for i in range(1, n + 1):
+            j = 1
+            while j * j <= i:
+                dp[i] = min(dp[i], dp[i - j * j] + 1)
+                j += 1
+        return int(dp[n])
+
+class Solution279BFS:
+    # 需要一个队列 queue 来存放每一层要访问的节点
+    # 需要一个集合 set 或者布尔数组 visited 来记录已经访问过的节点, 避免重复计算和死循环
+    def numSquares(self, n: int) -> int:
+        queue = collections.deque([(n, 0)])
+        visited = {n}
+        # 当前数字, 当前步数
+        while queue:
+            current_num, steps = queue.popleft()
+            if current_num == 0:
+                return steps
+            j = 1
+            while j * j <= current_num:
+                next_num = current_num - j * j
+                if next_num not in visited:
+                    visited.add(next_num)
+                    queue.append((next_num, steps + 1))
+                j += 1
+        return -1
+
+
+sol = Solution279DP()
+test_cases = [
+    (12, 3),
+    (13, 2)
+]
+for i, (input, expected_res) in enumerate(test_cases):
+    actual_output = sol.numSquares(input)
+    assert actual_output == expected_res, f"Test case {i + 1} failed."
+print("\nAll test cases passed successfully!")
+```
+
+
+
+## 多维动态规划
+
+### [5. 最长回文子串](https://leetcode.cn/problems/longest-palindromic-substring/)
+
+* 方法: 多维动态规划 -- 构造 dp 表格, (i, j) 表示 i 到 j 下标构成的子串是否回文. 外循环为子串长度, 内循环为子串起始下标位置. 仅需填满动态规划 dp 矩阵的上三角即可.
+* 时间复杂度: O(n ^ 2) -- 内层外层循环各遍历 O(n) 次.
+* 空间复杂度: O(n ^ 2) -- dp 数组为 n ^ 2 大小.
+
+```python
+class Solution5:
+    def longestPalindrome(self, s: str) -> str:
+        n = len(s)
+        dp = [[False] * n for _ in range(n)]
+        for i in range(n):
+            dp[i][i] = True
+        max_len = 0
+        res_start = 0
+        for s_length in range(2, n + 1):
+            for start_index in range(n - s_length + 1):
+                end_index = start_index + s_length - 1
+                if s[start_index] == s[end_index]:
+                    if dp[start_index + 1][end_index - 1] or s_length == 2:
+                        dp[start_index][end_index] = True
+                        max_len = max(max_len, s_length)
+                        res_start = start_index
+        return s[res_start: res_start + max_len]
+
+sol = Solution5()
+test_cases = [
+    ("babad", ["aba", "bab"]),
+    ("cbbd", "bb")
+]
+for i, (input, res) in enumerate(test_cases):
+    result = sol.longestPalindrome(input)
+    assert result in res, f"test case {i + 1} failed."
+print("\nAll test cases passed successfully!")
+```
+
+
+
+## 其他
+
+### [91. 解码方法](https://leetcode.cn/problems/decode-ways/)
+
+* 方法: 动态规划 -- 考虑两种状态转移方式, 从第一个字符开始往后计算每一个字符的解码方法.
+* 时间复杂度: O(n) -- 因为 for 循环只会循环 n 次;  
+* 空间复杂度: O(n) -- 因为只额外创建了一个长度为 n+1 的动态规划状态数组.
+
+```python
+class Solution91:
+    def numDecodings(self, s: str) -> int:
+        n = len(s)
+        f = [1] + [0] * n
+        for i in range(1, n + 1):
+            if s[i - 1] != "0":
+                f[i] += f[i - 1]
+            if i > 1 and s[i - 2] != "0" and int(s[i-2:i]) <= 26:
+                f[i] += f[i - 2]
+        return f[n]
+    
+sol = Solution91()
+test_cases = [
+    ("06", 0),
+    ("226", 3)
+]
+for i, (input, res) in enumerate(test_cases):
+    assert sol.numDecodings(input) == res, f"test case {i + 1} failed."
+print("\nAll test cases passed successfully!")
+```
+
+
+
+
+### [69. x的平方根](https://leetcode.cn/problems/sqrtx/)
+
+* 方法: 二分法 -- 技巧: 中值向下取整避免无限死循环.  
+* 时间复杂度: O(log n) -- 每猜一次, 搜索范围的大约都缩小为原来的一半, 当搜索范围缩小到只剩 1 个元素时, 我们就找到了答案. 设次数为 k, 那么 x ≈ 2 ^ k.
+* 空间复杂度: O(1) -- 只定义了 left, right, ans, mid 四个额外变量.
+
+
+```python
+class Solution69:
+    def mySqrt(self, x: int) -> int:
+        left, right, ans = 0, x, -1
+        while left <= right:
+            mid = (left + right) // 2
+            if mid * mid <= x:
+                ans = mid
+                left = mid + 1
+            else:
+                right = mid - 1
+        return ans
+
+sol = Solution69()
+test_cases = [
+    (24, 4),
+    (0, 0)
+]
+for i, (input, res) in enumerate(test_cases):
+    assert sol.mySqrt(input) == res, f"test case {i + 1} failed."
+print("\nAll test cases passed successfully!")
 ```

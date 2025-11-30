@@ -6,9 +6,17 @@ next-chapter: "The Nature of Preferences"
 next-url: "05-preferences"
 ---
 
-# Training Overview
+# SGLang
+
+
+Trie (读音同 "try"), 中文叫 前缀树 或 字典树
+
 
 ## Problem Formulation
+
+
+![alt text](images/kvcache_manage.png)
+
 
 The optimization of Blog.v (RLHF) builds on top of the standard RL setup.
 In RL, an agent takes actions, $a$, sampled from a policy, $\pi$, with respect to the state of the environment, $s$, to maximize reward, $r$ [@sutton2018reinforcement].
