@@ -315,6 +315,57 @@ $endfor$
         });
     });
 })();
+document.addEventListener('DOMContentLoaded', function() {
+    // 1. 在页面上创建一个唯一的模态框结构
+    const modalHTML = `
+        <div class="tutor-modal-overlay" id="python-tutor-modal">
+            <div class="tutor-modal-content">
+                <button class="tutor-modal-close" title="Close">&times;</button>
+                <iframe src="" frameborder="0"></iframe>
+            </div>
+        </div>
+    `;
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+
+    const modalOverlay = document.getElementById('python-tutor-modal');
+    const modalIframe = modalOverlay.querySelector('iframe');
+    const closeModalBtn = modalOverlay.querySelector('.tutor-modal-close');
+
+    // 2. 找到所有的 "可视化" 按钮并添加点击事件
+    const visualizeButtons = document.querySelectorAll('.visualize-btn');
+    visualizeButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const tutorSrc = this.getAttribute('data-tutor-src');
+            if (tutorSrc) {
+                modalIframe.src = tutorSrc; // 加载对应的 Tutor 链接
+                modalOverlay.classList.add('visible'); // 显示模态框
+            }
+        });
+    });
+
+    // 3. 定义关闭模态框的函数
+    function closeModal() {
+        modalOverlay.classList.remove('visible');
+        // 非常重要：关闭时清空 src，停止 iframe 加载，节省资源
+        modalIframe.src = ''; 
+    }
+
+    // 4. 为关闭按钮和背景遮罩添加关闭事件
+    closeModalBtn.addEventListener('click', closeModal);
+    modalOverlay.addEventListener('click', function(event) {
+        // 确保只在点击背景时关闭，而不是点击内容区
+        if (event.target === modalOverlay) {
+            closeModal();
+        }
+    });
+    
+    // 5. 添加 ESC 键关闭功能
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape' && modalOverlay.classList.contains('visible')) {
+            closeModal();
+        }
+    });
+});
 </script>
 <!-- COPY BUTTON SCRIPT END -->
 </body>

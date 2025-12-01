@@ -153,8 +153,9 @@ for i, (input, res) in enumerate(test_cases):
     assert sol.trap(input) == res, f"test case {i + 1} failed."
 print("\nAll test cases passed successfully!")
 ```
-
-
+<button class="visualize-btn" data-tutor-src="https://pythontutor.com/iframe-embed.html#code=from%20typing%20import%20List%0D%0Aclass%20Solution41%3A%0D%0A%20%20%20%20def%20trap%28self%2C%20height%3A%20List%5Bint%5D%29%20-%3E%20int%3A%0D%0A%20%20%20%20%20%20%20%20res%20%3D%200%0D%0A%20%20%20%20%20%20%20%20left%2C%20right%20%3D%200%2C%20len%28height%29%20-%201%0D%0A%20%20%20%20%20%20%20%20left_max%2C%20right_max%20%3D%20height%5Bleft%5D%2C%20height%5Bright%5D%0D%0A%20%20%20%20%20%20%20%20while%20left%20%3C%3D%20right%3A%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20left_max%20%3D%20max%28left_max%2C%20height%5Bleft%5D%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20right_max%20%3D%20max%28right_max%2C%20height%5Bright%5D%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20if%20left_max%20%3C%3D%20right_max%3A%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20res%20%2B%3D%20left_max%20-%20height%5Bleft%5D%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20left%20%2B%3D%201%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20else%3A%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20res%20%2B%3D%20right_max%20-%20height%5Bright%5D%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20right%20-%3D%201%0D%0A%20%20%20%20%20%20%20%20return%20res%0D%0A%0D%0Asol%20%3D%20Solution41%28%29%0D%0Atest_cases%20%3D%20%5B%0D%0A%20%20%20%20%28%5B0%2C1%2C0%2C2%2C1%2C0%2C1%2C3%2C2%2C1%2C2%2C1%5D%2C%206%29%2C%0D%0A%20%20%20%20%28%5B4%2C2%2C0%2C3%2C2%2C5%5D%2C%209%29%0D%0A%5D%0D%0Afor%20i%2C%20%28input%2C%20res%29%20in%20enumerate%28test_cases%29%3A%0D%0A%20%20%20%20assert%20sol.trap%28input%29%20%3D%3D%20res%2C%20f%22test%20case%20%7Bi%20%2B%201%7D%20failed.%22%0D%0Aprint%28%22%5CnAll%20test%20cases%20passed%20successfully%21%22%29&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=[]&textReferences=false">
+  可视化 ✨
+</button>
 
 ## 滑动窗口
 

@@ -751,13 +751,13 @@ body {
 /* 5. 正文区域 */
 .main-content {
     flex-grow: 1;
-    max-width: 48em; /* 保持原本的阅读宽度 */
+    max-width: 65em; /* 保持原本的阅读宽度 */
     min-width: 0; /* 防止代码块撑爆布局 */
 }
 
 /* 头部和底部修正 */
 header#title-block-header, footer {
-    max-width: 48em;
+    max-width: 65em;
     margin: 0 auto;
     padding: 20px;
 }
@@ -780,4 +780,101 @@ header#title-block-header, footer {
         max-width: 100%;
         padding: 0 15px;
     }
+}
+
+
+/* --- 可视化按钮和模态框的样式 --- */
+
+/* 1. 可视化按钮的样式 */
+.visualize-btn {
+    display: block;
+    margin: -1.0em 0 1.5em auto; /* 巧妙的负边距，让它贴近代码框 */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 6px;
+    background: #2a2f3a;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #82aaff;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.visualize-btn:hover {
+    background: #363c4a;
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.25);
+    transform: translateY(-1px);
+}
+
+/* 2. 模态框的背景遮罩 */
+.tutor-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.tutor-modal-overlay.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* 3. 模态框的内容容器 */
+.tutor-modal-content {
+    position: relative;
+    background: #fdfdfd;
+    border-radius: 12px;
+    width: 90%;
+    height: 85%;
+    max-width: 1400px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+}
+
+.tutor-modal-overlay.visible .tutor-modal-content {
+    transform: scale(1);
+}
+
+.tutor-modal-content iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 12px;
+}
+
+/* 4. 关闭按钮 */
+.tutor-modal-close {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    width: 36px;
+    height: 36px;
+    background: white;
+    border-radius: 50%;
+    border: none;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.2s ease;
+}
+
+.tutor-modal-close:hover {
+    transform: scale(1.1) rotate(90deg);
+    background: #ff5f56;
+    color: white;
 }
